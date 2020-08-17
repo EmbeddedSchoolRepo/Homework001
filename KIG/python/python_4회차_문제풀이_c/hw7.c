@@ -1,21 +1,31 @@
 #include <stdio.h>
-#define N 100
 
 int main(void)
 {
 	int i;
-	int num[N];
-	int n;
-	num[0] = 1; // 초깃값
-	num[1] = 3;	// 초깃값
+	int N;
+	int n1 = 1, n2 = 3;
+	int result = n1 + n2; // 초기값
+	int temp;
 
-	for (i = 2; i < N; i++) {
-		num[i] = num[i - 1] + num[i - 2];
-	}
 	printf("몇번째 숫자를 알고 싶습니까? ");
-	scanf("%d", &n);
-	printf("%d 번째 숫자는 %d 입니다\n", n, num[n-1]);
+	scanf("%d", &N);
 
+	for (i = 3; i < N; i++) {
+		temp = result;
+		result += n2;
+		n2 = temp;
+	}
+
+	if(N == 1){
+		printf("%d 번째 숫자는 1 입니다.\n", N);	
+	}
+	else if(N == 2){
+		printf("%d 번째 숫자는 3 입니다.\n", N);	
+	}	
+	else{
+		printf("%d 번째 숫자는 %d 입니다\n", N, result);
+	}
 
 	return 0;
 }

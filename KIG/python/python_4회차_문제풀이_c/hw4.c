@@ -12,7 +12,7 @@ int main(void)
 {
 	float poisson_value = poisson(YEAR_CRIME, 1);
 
-	printf("다음 달에 범죄가 발생할 확률은 %f%% 입니다\n", poisson_value);
+	printf("다음 달에 범죄가 발생하지 않을 확률은 %f%% 입니다\n", 1-poisson_value);
 
 	return 0;
 }

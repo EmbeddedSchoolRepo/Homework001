@@ -1,32 +1,43 @@
 #include <stdio.h>
-#define N 57
+
 int main(void)
 {
 	int i;
-	long long sum_even = 0;
-	long long	sum_odd = 0;
-	long long sub;
-	long long num[N];
-	num[0] = 1;
-	num[1] = 1;
+	int N = 57;
+	long long temp;
+	long long n1, n2, result;
+	long long sum_even = 0, sum_odd = 0;
 
-	for (i = 2; i < N; i++) {
-		num[i] = num[i - 1] + num[i - 2];
+	for (i = 1; i < N + 1; i++) {
+		if(i == 1){
+			n1 = 1;
+			sum_odd = n1;
+		}
+		else if(i == 2){
+			n2 = 1;
+			sum_odd += n2;
+		}
+		else if(i == 3){
+			result = n1 + n2;
+			sum_even = result;
+		}
+		else{
+			temp = result;
+			result += n2;
+			n2 = temp;
+
+			if(result % 2 == 0){
+				sum_even += result;
+			}
+			else{
+				sum_odd += result;
+			}
+		}
 	}
 
-	for (i = 0; i < N; i++) {
-		if (num[i] % 2 == 0) {
-			sum_even += num[i];
-		}
-		else {
-			sum_odd += num[i];
-		}
-	}
-	sub = sum_odd - sum_even;
-
-	printf("홀수들의 합 : %lld\n", sum_odd);
-	printf("짝수들의 합 : %lld\n", sum_even);
-	printf("홀수합 - 짝수합 : %lld\n", sub);
+	printf("짝수 합 : %lld\n", sum_even);
+	printf("홀수 합 : %lld\n", sum_odd);
+	printf("홀수 합 - 짝수 합 : %lld\n", sum_odd - sum_even);
 
 	return 0;
 }

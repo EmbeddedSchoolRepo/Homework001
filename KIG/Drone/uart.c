@@ -41,7 +41,7 @@ void uart_string_transmit(uint8_t string[])
 		
 	}
 }
-
+/*
 void uart_print(char *name, long val)
 {
 	char debug_buffer[UART_BUFLEN] = {'\0'};
@@ -53,7 +53,7 @@ void uart_print(char *name, long val)
 	UART_string_transmit(debug_buffer);
 	UART_string_transmit("\n");
 }
-
+*/
 int usartTxChar(char ch, FILE *fp) {  // for printf
 	while (!(UCSR0A & (1 << UDRE0)));
 

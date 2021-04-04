@@ -18,8 +18,13 @@
 #include <util/delay.h>
 #include <math.h>
 
-#define sbi(PORTx,Bit)	PORTx |= (1<<Bit)
-#define cbi(PROTx,Bit)	PORTx &= (~(1<<Bit))
+#define s_to_us 1000000
+#define us_to_s 0.000001F
+
+#define sbi(PORTx, Bit)	PORTx |= (1 << Bit)
+#define cbi(PORTx, Bit)	PORTx &= (~(1 << Bit))
+
+
 
 
 

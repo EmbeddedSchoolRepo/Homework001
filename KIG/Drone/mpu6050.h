@@ -44,7 +44,10 @@
 #define FS_SEL2 32.8
 #define FS_SEL3 16.4
 
+#define DT 0.004
 #define PI 3.141592265359
+#define ALPHA 0.6 //t=0.04, 
+//#define ALPHA 0.6141304
 
 typedef union accel_t_gyro_union{
 	
@@ -91,14 +94,28 @@ typedef struct angle_value
 	double yaw;
 }angle;
 
-accel_t_gyro* Paccel_gyro_ave;
+//accel_t_gyro* Paccel_gyro_ave;
+
+typedef struct time__
+{
+	unsigned long t_now;
+	unsigned long t_old;
+	double dt;
+}time_value;
+
+extern double const_dt;
+
 
 void mpu6050_write(uint8_t reg_address, uint8_t data);
 void mpu6050_read(uint8_t reg_address, uint8_t len, uint8_t* buffer);
 void mpu6050_init(void);
+void get_accel_gyro_ave(accel_t_gyro* Paccel_gyro);
 void get_accel_gyro_raw(accel_t_gyro* Paccel_gyro);
-void get_roll_pitch_yaw(accel_t_gyro* Paccel_gyro, angle* Pangle);
-
+void get_Ac_roll_pitch(accel_t_gyro* Paccel_gyro, accel_t_gyro* Paccel_gyro_ave, angle* Pangle);
+void get_Gy_roll_pitch_yaw(accel_t_gyro* Paccel_gyro, accel_t_gyro* Paccel_gyro_ave, angle* Pangle);
+void getDT_init(void);
+void cal_filltered_roll_pitch_yaw(angle* Ac_angle, angle* Gy_angle, angle* Fil_angle);
+void mpu6050_run(accel_t_gyro* Paccel_gyro, angle* Fil_angle);
 
 
 

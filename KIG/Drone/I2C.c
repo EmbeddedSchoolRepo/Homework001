@@ -37,7 +37,7 @@ uint8_t i2c_start(void)
 	if(((TWSR & 0xF8) != START) && (TWSR & 0xF8) != REP_START)
 	{
 		printf("start condition error\n");
-		return 1;
+		i2c_start();
 	}
 	return 0;
 }
@@ -65,7 +65,7 @@ uint8_t i2c_SLA_W(uint8_t address)
 	if((TWSR & 0xF8) != MT_SLA_W_ACK)
 	{
 		printf("MT_SLA_W_ACK error\n");
-		return 1;
+		i2c_SLA_W(address);
 	}
 	return 0;
 }
@@ -79,7 +79,7 @@ uint8_t i2c_write_data(uint8_t data)
 	if((TWSR & 0xF8) != MT_DATA_ACK)
 	{
 		printf("MT_DATA_ACK error\n");
-		return 1;
+		i2c_write_data(data);
 	}
 	return 0;
 }
@@ -94,7 +94,7 @@ uint8_t i2c_SLA_R(uint8_t address)
 	if((TWSR & 0xF8) != MR_SLA_R_ACK)
 	{
 		printf("MR_SLA_R_ACK error\n");
-		return 1;
+		i2c_SLA_R(address);
 	}
 
 	return 0;
@@ -108,7 +108,7 @@ uint8_t i2c_readACK(void)
 	if((TWSR & 0xF8) != MR_DATA_ACK)
 	{
 		printf("MR_DATA_ACK error\n");
-		return 1;
+		i2c_readACK();
 	}	
 	return TWDR;
 }
@@ -121,7 +121,7 @@ uint8_t i2c_readNACK(void)
 	if((TWSR & 0xF8) != MR_DATA_NACK)
 	{
 		printf("MR_DATA_NACK error\n");
-		return 1;
+		i2c_readNACK();
 	}
 	return TWDR;
 }
